@@ -10,11 +10,9 @@ class Stack(object):
     def __init__(self, data):
         self.head = Node(data)
 
-    def push(self, data):   
-        new_node = Node(data, self.head)
-        if self.head == None:
-            self.head = new_node
-        
+    def push(self, data):
+        self.head = Node(data, self.head)
+
     def pop(self):
         try:
             head_val = self.head.data
@@ -27,8 +25,10 @@ class Stack(object):
         while tmp_node:
             print tmp_node.data
             tmp_node = tmp_node.next
+        else :
+            return
+        print u"Stack is Empty"
 
-       
 if __name__ == '__main__':
 
     test = Stack(5)
@@ -44,14 +44,6 @@ if __name__ == '__main__':
     test2.print_()
     test2.pop()
     test2.print_()
-    
-
-
-    
-
-    
 
 
 
-
-        
