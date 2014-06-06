@@ -2,42 +2,39 @@
 
 
 class Node(object):
-    def __init__(self, value):
+    def __init__(self, value, next=None):
         self.value = value
-        self.next = None
+        self.next = next
+    def getdata(self):
+        return self.value
 
 class LinkedList(object):
     def __init__(self, value):
         self.head = Node(value)
-
-    def print_allow(self):
-        temp_node = self.head
-        l = []
-        while temp_node:
-            l.append(temp_node.value)
-            temp_node = temp_node.next
-        print tuple(l) 
+        self.size_ = 1
 
     def insert(self, value):
         if self.head is None:
-            self.head = Node(value)
-        else:
-            new_node = Node(value)
-            new_node.next = self.head
-            self.head = new_node
+            return self.__init__(value)
+        new_node = Node(value, self.head)
+        self.head = new_node
+        self.size_ += 1
 
     def pop(self):
-        temp_node = self.head.next
-        del self.head 
-        self.head = temp_node 
+        # pop the first value off the head of the list and return it
+        if self.head == None :
+            return
+        elif self.head.next == None :
+            val = self.head.value
+            self.head = None
+            return val
+        else :
+            val, self.head = self.head.value, self.head.next
+        self.size_ -= 1
+        return val
 
     def size(self):
-        count = 0
-        temp_node = self.head
-        while temp_node:
-            count += 1
-            temp_node = temp_node.next
-        return count
+        return self.size_
 
     def search(self, value):
         temp_node = self.head
@@ -45,31 +42,41 @@ class LinkedList(object):
             if temp_node.value == value:
                 return temp_node
             temp_node = temp_node.next
-        return None
+        else :
+            return None
 
     def remove(self, node):
         if self.head == None:
-            return 
+            return u"Link List is empty!"
         if self.head == node:
-            self.pop()
-        else:
-            temp_node = self.head
-            while temp_node.next:
-                if temp_node.next == node:
-                    temp_node.next.next = node.next
-                    del node
-                    break
+            return self.pop()
+        temp_node = self.head
+        while temp_node.next:
+            if temp_node.next == node:
+                temp_node.next = node.next
+                break
+        else :
+            return u"Node is not in the Link List"
 
-
+    def __str__(self):
+        tmp_node = self.head
+        str_ = "("
+        while tmp_node :
+            str_ += str(tmp_node.value) + ", "
+            tmp_node = tmp_node.next
+        return str_[:-2]+")" if len(str_)>1 else str_+")"
 
 
 if __name__ == '__main__':
     
     test = LinkedList(5)
-    test.print_allow()
     test.insert(6)
-    test.print_allow()
+    print test.search('X')
+    print test
     test.size()
     new_node = test.search(6)
     test.remove(new_node)
-    test.print_allow()
+    print test
+    print test.pop()
+    print test.pop()
+    print test

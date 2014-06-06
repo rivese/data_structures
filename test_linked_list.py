@@ -15,6 +15,12 @@ def test_insert():
     l.insert(5)
 
     assert str(l) == "(5, 7)"
+    k = ll.LinkedList(3)
+    k.pop()
+    k.insert(4)
+
+    assert str(k) == "(4)"
+
     print u'Passed insert test'
 
 
@@ -23,6 +29,7 @@ def test_pop():
     l.insert(5)
    
     assert l.pop() == 5
+    assert l.pop() == None
     print u'Passed pop test'
 
 
@@ -36,6 +43,7 @@ def test_search():
 
     assert l.search(8).getdata() == 8
     assert l.search('A').getdata() == "A"
+    assert l.search('F').getdata() == None
     
     print u'Passed search test'
 
