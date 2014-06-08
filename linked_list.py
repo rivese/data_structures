@@ -14,23 +14,21 @@ class LinkedList(object):
         self.size_ = 1
 
     def insert(self, value):
-        if self.head is None:
-            return self.__init__(value)
         new_node = Node(value, self.head)
         self.head = new_node
         self.size_ += 1
 
     def pop(self):
-        # pop the first value off the head of the list and return it
-        if self.head == None :
+        if not self.head :
             return
-        elif self.head.next == None :
+        elif not self.head.next :
             val = self.head.value
             self.head = None
+            self.size_ = 0
             return val
         else :
             val, self.head = self.head.value, self.head.next
-        self.size_ -= 1
+            self.size_ -= 1
         return val
 
     def size(self):
@@ -46,7 +44,7 @@ class LinkedList(object):
             return None
 
     def remove(self, node):
-        if self.head == None:
+        if not self.head :
             return u"Link List is empty!"
         if self.head == node:
             return self.pop()
@@ -68,7 +66,6 @@ class LinkedList(object):
 
 
 if __name__ == '__main__':
-    
     test = LinkedList(5)
     test.insert(6)
     print test.search('X')
