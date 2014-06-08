@@ -1,6 +1,5 @@
 #!/usr/bin/python
 
-
 class Node(object):
     def __init__(self, data, next = None):
         self.data = data
@@ -19,20 +18,20 @@ class Stack(object):
             self.head = self.head.next
             return head_val
         except AttributeError:
-            pass
+            print "There is no data in the stack"
     def print_(self) :
         tmp_node = self.head
         while tmp_node:
-            print tmp_node.data
+            print tmp_node.data,
             tmp_node = tmp_node.next
         else :
             return
         print u"Stack is Empty"
 
 if __name__ == '__main__':
-
     test = Stack(5)
     test.push(6)
+    test.print_()
     test.pop()
     test.pop()
 
@@ -44,6 +43,7 @@ if __name__ == '__main__':
     test2.print_()
     test2.pop()
     test2.print_()
+
 
 
 
